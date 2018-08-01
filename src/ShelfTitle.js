@@ -5,7 +5,7 @@ class ShelfTitle extends Component {
 
   render () {
     return (
-      <h2 className="bookshelf-title">{normalizeText(this.props.shelfTitle)}</h2>
+      <h2 className="bookshelf-title">{this.props.shelfTitle}</h2>
     )
   }
 }
