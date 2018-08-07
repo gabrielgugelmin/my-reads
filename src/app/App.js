@@ -1,6 +1,6 @@
 import React from 'react'
 import * as BooksAPI from '../book/BooksAPI'
-import './App.css'
+import './App.scss'
 import Book from '../book/Book';
 import ListBooks from '../book/ListBooks';
 
