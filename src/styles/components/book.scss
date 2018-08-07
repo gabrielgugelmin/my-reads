@@ -1,0 +1,53 @@
+.book {
+  margin: $grid-gutter;
+  width: 140px;
+
+  &__image {
+    background: #eee;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px 3px rgba($black, .1337);
+    height: 200px;
+    position: relative;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  &__title {
+    color: $gray-darker;
+    font-family: $font-title;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  &__authors {
+    color: $gray-dark;
+    font-family: $font-text;
+    font-size: 14px;
+
+    &-item {
+      margin-bottom: 3px;
+    }
+  }
+
+  &__shelf-changer {
+    background: #60ac5d;
+    background-image: url('../img/icons/arrow-drop-down.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 50%;
+    bottom: -10px;
+    box-shadow: 0 3px 6px rgba($black, .16), 0 3px 6px rgba($black, 0.23);
+    height: 40px;
+    position: absolute;
+    right: 0;
+    width: 40px;
+
+    select {
+      cursor: pointer;
+      height: 100%;
+      opacity: 0;
+      width: 100%;
+    }
+  }
+}

@@ -7,8 +7,7 @@ class BookShelf extends Component {
     return (
       <div className="bookshelf">
         <ShelfTitle shelfTitle={this.props.shelfTitle} />
-        <div className="bookshelf-books">
-          <ol className="books-grid">
+          <div className="bookshelf__grid">
             {
               this.props.books.filter(book => book.shelf === this.props.shelfTitle).map(book => (
                 <Book
@@ -19,8 +18,7 @@ class BookShelf extends Component {
                 />
               ))
             }
-          </ol>
-        </div>
+          </div>
       </div>
     )
   }

@@ -1,0 +1,11 @@
+.bookshelf {
+
+  &__title {
+
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: row;
+  }
+}

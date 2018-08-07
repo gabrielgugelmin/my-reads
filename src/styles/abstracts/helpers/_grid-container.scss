@@ -1,0 +1,18 @@
+// Media Query config
+// For _include-media.scss file in helpers
+$width-by-breakpoint: (
+  "phone":   540px,
+  "tablet":  750px,
+  "desktop": 970px,
+  "wide":    1170px,
+  "larger":  1400px,
+) !default;
+
+@mixin grid-container($size: 1) {
+  @each $key, $value in $breakpoints {
+    $width: map-get($width-by-breakpoint, $key) / $size;
+    @include media(">=#{$key}") {
+      max-width: $width;
+    }
+  }
+}

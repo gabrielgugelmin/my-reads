@@ -1,6 +1,6 @@
 import React from 'react'
 import * as BooksAPI from '../book/BooksAPI'
-import './App.scss'
+import '../styles/styles.scss'
 import Book from '../book/Book';
 import ListBooks from '../book/ListBooks';
 
@@ -94,7 +94,7 @@ class BooksApp extends React.Component {
                 {
                   this.state.booksSearch.length > 0 ? (
                     this.state.booksSearch.map(book => (
-                      <Book 
+                      <Book
                         book={book}
                         books={this.state.books}
                         key={book.id}
@@ -109,12 +109,14 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
-          <ListBooks
-            books={this.state.books}
-            shelfs={shelfs}
-            showSearchPage={this.showSearchPage}
-            updateShelf={this.updateShelf}
-          />
+          <div className="container">
+            <ListBooks
+              books={this.state.books}
+              shelfs={shelfs}
+              showSearchPage={this.showSearchPage}
+              updateShelf={this.updateShelf}
+            />
+          </div>
         )}
       </div>
     )
