@@ -1,26 +1,39 @@
 .book {
   margin: $grid-gutter;
-  width: 140px;
+  width: 170px;
+
+  &:hover {
+    .book__top {
+      box-shadow: 1px 1px 12px 8px rgba($black, .15);
+    }
+  }
+
+  &__top {
+    border-radius: 3px;
+    box-shadow: 1px 1px 8px 2px rgba($black, .1);
+    margin-bottom: $grid-gutter;
+    transition: box-shadow .3s ease;
+  }
 
   &__image {
-    background: #eee;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px 3px rgba($black, .1337);
-    height: 200px;
-    position: relative;
-    background-size: cover;
     background-position: center top;
+    background-size: cover;
+    background-color: $gray-dark;
+    border-radius: 3px;
+    height: 240px;
+    position: relative;
   }
 
   &__title {
-    color: $gray-darker;
+    color: $purple;
     font-family: $font-title;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 16px;
     margin-bottom: 5px;
   }
 
   &__authors {
-    color: $gray-dark;
+    color: $purple;
     font-family: $font-text;
     font-size: 14px;
 

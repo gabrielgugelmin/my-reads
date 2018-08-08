@@ -17,22 +17,24 @@ class Book extends Component {
 
     return (
       <div className="book">
-        <div className="book__image" style={{backgroundImage: `url(${thumbnail})` }}>
-          <div className="book__shelf-changer">
-            <select
-              value={this.props.books.filter((book) => book.id === this.props.book.id).reduce((prev, book) => book.shelf, 'none')}
-              onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)} >
-              <option value="move" disabled>Move to...</option>
-              {
-                options.map(shelf => (
-                  <option
-                    key={shelf}
-                    value={shelf}>
-                      {normalizeText(shelf)}
-                  </option>
-                ))
-              }
-              </select>
+        <div className="book__top">
+          <div className="book__image" style={{backgroundImage: `url(${thumbnail})` }}>
+            <div className="book__shelf-changer">
+              <select
+                value={this.props.books.filter((book) => book.id === this.props.book.id).reduce((prev, book) => book.shelf, 'none')}
+                onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)} >
+                <option value="move" disabled>Move to...</option>
+                {
+                  options.map(shelf => (
+                    <option
+                      key={shelf}
+                      value={shelf}>
+                        {normalizeText(shelf)}
+                    </option>
+                  ))
+                }
+                </select>
+            </div>
           </div>
         </div>
         <div className="book__title">{this.props.book.title}</div>

@@ -5,7 +5,8 @@ body {
   line-height: 1.5;
 }
 body, .app {
-  background: white;
+  // background: linear-gradient(45deg, rgba(46,45,63,1) 0%, rgba(32,50,72,1) 43%, rgba(42,50,71,1) 64%, rgba(43,51,72,1) 100%);
+  background-color: $gray;
 }
 
 /* main page */
