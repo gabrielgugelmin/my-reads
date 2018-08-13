@@ -1,25 +1,23 @@
-import React from 'react'
+import React from 'react';
 import { Route } from 'react-router-dom';
-import * as BooksAPI from '../book/BooksAPI'
+import * as BooksAPI from '../book/BooksAPI';
 import Search from '../search/Search';
 import ListBooks from '../book/ListBooks';
-import '../styles/styles.scss'
+import '../styles/styles.scss';
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false,
+    // Armazena os livros do usuário
     books: [],
+    // Armazena os livros que são retornados pela busca (fn: searchBooks)
     booksSearch: [],
+    // Valor do input de busca
     searchQuery: '',
+    // Mensagem que será exibida na tela de busca
     searchMessage: 'Os resultados da pesquisa serão exibidos aqui'
   }
 
+  // Muda o livro de prateleira
   updateShelf = (book, shelf) => {
     book.shelf = shelf;
 
@@ -30,15 +28,11 @@ class BooksApp extends React.Component {
     BooksAPI.update(book, shelf);
   }
 
-  showSearchPage = () => {
-    this.setState({
-      showSearchPage: !this.state.showSearchPage
-    });
-  }
-
+  // Busca os livros de acordo com o valor do input
   searchBooks = (event) => {
     this.setState({ searchQuery: event.target.value });
 
+    // Só consulta a API caso o input não esteja vazio
     if (event.target.value.length > 0) {
       BooksAPI.search(event.target.value).then((booksSearch) => {
         let result = booksSearch.length > 0 ? booksSearch : [];
@@ -48,6 +42,8 @@ class BooksApp extends React.Component {
         });
       });
     } else {
+      // Caso contrário zera o array para não exibir livros incorretos
+      // Atualiza a mensagem para melhor feedback
       this.setState({
         booksSearch: [],
         searchMessage: 'Nenhum resultado encontrado'
@@ -56,6 +52,7 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    // Busca todos os livros do usuário
     BooksAPI.getAll().then((books) => {
       this.setState({
         books
@@ -64,6 +61,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    // Prateleiras disponíveis
     const shelfs = ['currentlyReading', 'wantToRead', 'read', 'none']
 
     return (
@@ -73,18 +71,18 @@ class BooksApp extends React.Component {
             <ListBooks
               books={this.state.books}
               shelfs={shelfs}
-              showSearchPage={this.showSearchPage}
               updateShelf={this.updateShelf}
             />
           )} />
           <Route path="/search" render={() => (
             <Search
-              searchQuery={this.state.searchQuery}
-              searchBooks={this.searchBooks}
               books={this.state.books}
               booksSearch={this.state.booksSearch}
-              updateShelf={this.updateShelf}
+              searchBooks={this.searchBooks}
               searchMessage={this.state.searchMessage}
+              searchQuery={this.state.searchQuery}
+              shelfs={shelfs}
+              updateShelf={this.updateShelf}
             />
           )}/>
         </div>

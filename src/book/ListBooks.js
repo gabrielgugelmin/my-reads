@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import BookShelf from './BookShelf';
 
 class ListBooks extends Component {
@@ -14,23 +15,11 @@ class ListBooks extends Component {
                   books={this.props.books}
                   key={shelfTitle}
                   shelfTitle={shelfTitle}
+                  shelfs={this.props.shelfs}
                   updateShelf={this.props.updateShelf}
                 />
               ))
             }
-            {/* <div className="bookshelf">
-              <h2 className="bookshelf-title">Currently Reading</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                {
-
-                 this.props.books.map(book => (
-                    <Book key={book.id} book={book} updateShelf={this.props.updateShelf} />
-                  ))
-                }
-                </ol>
-              </div>
-            </div> */}
           </div>
         </div>
         <div className="open-search">
@@ -39,6 +28,12 @@ class ListBooks extends Component {
       </div>
     )
   }
+}
+
+ListBooks.propTypes = {
+  books: PropTypes.array.isRequired,
+  shelfs: PropTypes.array.isRequired,
+  updateShelf: PropTypes.func.isRequired,
 }
 
 export default ListBooks

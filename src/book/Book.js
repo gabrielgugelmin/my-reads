@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import { normalizeText } from '../helpers/normalizeText'
+import PropTypes from 'prop-types';
+import { normalizeText } from '../helpers/normalizeText';
 
 class Book extends Component {
 
-  shelfSelect = (book, optionShelf) => {
-    if (book.shelf) {
-      return book.shelf === optionShelf ? true : false;
-    } else {
-      return optionShelf === 'none' ? true : false;
-    }
-  }
-
   render () {
-    const options = ['currentlyReading', 'wantToRead', 'read', 'none']
+    // Verifica se o book possui imagem
     const thumbnail = 'imageLinks' in this.props.book ? this.props.book.imageLinks.thumbnail : false;
 
     return (
@@ -25,7 +18,7 @@ class Book extends Component {
                 onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)} >
                 <option value="move" disabled>Move to...</option>
                 {
-                  options.map(shelf => (
+                  this.props.shelfs.map(shelf => (
                     <option
                       key={shelf}
                       value={shelf}>
@@ -52,6 +45,12 @@ class Book extends Component {
       </div>
     )
   }
+}
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  books: PropTypes.array.isRequired,
+  updateShelf: PropTypes.func.isRequired
 }
 
 export default Book;

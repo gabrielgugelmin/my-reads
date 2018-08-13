@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Book from '../book/Book';
 
 class Search extends Component {
@@ -9,21 +10,12 @@ class Search extends Component {
 				<div className="search-books-bar">
 					<Link to="/" className="close-search">Close</Link>
 					<div className="search-books-input-wrapper">
-						{/*
-							NOTES: The search from BooksAPI is limited to a particular set of search terms.
-							You can find these search terms here:
-							https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-							However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-							you don't find a specific author or title. Every search is limited by search terms.
-							*/}
 						<input
 							onChange={this.props.searchBooks}
 							placeholder="Search by title or author"
 							type="text"
 							value={this.props.searchQuery}
 						/>
-
 					</div>
 				</div>
 				<div className="search-books-results">
@@ -36,6 +28,7 @@ class Search extends Component {
 										books={this.props.books}
 										key={book.id}
 										updateShelf={this.props.updateShelf}
+										shelfs={this.props.shelfs}
 									/>
 								))
 							) : (
@@ -47,6 +40,16 @@ class Search extends Component {
 			</div>
 		)
 	}
+}
+
+Search.propTypes = {
+	books: PropTypes.array.isRequired,
+	booksSearch: PropTypes.array.isRequired,
+	searchBooks: PropTypes.func.isRequired,
+	searchMessage: PropTypes.string.isRequired,
+	shelfs: PropTypes.array.isRequired,
+	updateShelf: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired,
 }
 
 export default Search
