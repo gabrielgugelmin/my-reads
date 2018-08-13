@@ -3,7 +3,10 @@ import { Route } from 'react-router-dom';
 import * as BooksAPI from '../book/BooksAPI';
 import Search from '../search/Search';
 import ListBooks from '../book/ListBooks';
+import Header from '../header/Header';
 import '../styles/styles.scss';
+import SearchBar from '../search/SearchBar';
+import SearchResult from '../search/SearchResult';
 
 class BooksApp extends React.Component {
   state = {
@@ -66,6 +69,10 @@ class BooksApp extends React.Component {
 
     return (
       <div className="app">
+        <Header 
+          searchQuery={this.state.searchQuery}
+          searchBooks={this.searchBooks}
+        />
         <div className="container">
           <Route exact path="/" render={() => (
             <ListBooks
@@ -75,15 +82,15 @@ class BooksApp extends React.Component {
             />
           )} />
           <Route path="/search" render={() => (
-            <Search
-              books={this.state.books}
-              booksSearch={this.state.booksSearch}
-              searchBooks={this.searchBooks}
-              searchMessage={this.state.searchMessage}
-              searchQuery={this.state.searchQuery}
-              shelfs={shelfs}
-              updateShelf={this.updateShelf}
-            />
+            <div className="search-books">
+              <SearchResult
+                books={this.state.books}
+                booksSearch={this.state.booksSearch}
+                searchMessage={this.state.searchMessage}
+                shelfs={shelfs}
+                updateShelf={this.updateShelf}
+              />
+            </div>
           )}/>
         </div>
       </div>

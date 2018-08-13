@@ -5,6 +5,9 @@ import { normalizeText, getExcerpt } from '../helpers/Helpers';
 class Book extends Component {
 
   render () {
+    // Resumo do livro
+    const description = this.props.book.description && (getExcerpt(this.props.book.description, 340));
+    const excerpt = this.props.book.description && (getExcerpt(this.props.book.description, 60));
     // Verifica se o book possui imagem
     const thumbnail = 'imageLinks' in this.props.book ? this.props.book.imageLinks.thumbnail : false;
 
@@ -12,7 +15,7 @@ class Book extends Component {
       <div className="book">
         <div className="book__container">
           <div className="book__figure">
-            <div className="book__image" style={{backgroundImage: `url(${thumbnail})` }}></div>
+            <div className="book__image" title={this.props.book.title} style={{backgroundImage: `url(${thumbnail})` }}></div>
           </div>
           <div className="book__text">
             <div className="book__shelf-changer">
@@ -32,7 +35,7 @@ class Book extends Component {
                 }
                 </select>
             </div>
-            <div className="book__title">{this.props.book.title}</div>
+            <div className="book__title" title={this.props.book.title}>{this.props.book.title}</div>
             <div className="book__authors">
               {
                 this.props.book.authors && (
@@ -47,11 +50,9 @@ class Book extends Component {
                 )
               }
             </div>
-            <div className="book__description">
-              {
-               this.props.book.description && (getExcerpt(this.props.book.description, 42))
-              }
-            </div>
+            <p className="book__description" title={description}>
+              {excerpt}
+            </p>
           </div>
         </div>
       </div>

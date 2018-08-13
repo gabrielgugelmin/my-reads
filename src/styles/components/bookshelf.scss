@@ -1,15 +1,30 @@
 .bookshelf {
+  margin-bottom: 4 * $grid-gutter;
 
   &__title {
+    border-bottom: 1px solid $gray;
+    color: $blue;
     font-family: $font-title;
-    color: $purple;
-    font-size: 28px;
-    margin-bottom: 2 * $grid-gutter;
+    font-size: 20px;
+    padding-bottom: 5px;
+    margin-bottom: $grid-gutter;
   }
 
   &__grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .book {
+    margin: (2 * $grid-gutter) $grid-gutter;
+
+    &:nth-child(3n+1) {
+      margin-left: 0;
+    }
+
+    &:nth-child(3n+3) {
+      margin-right: 0;
+    }
   }
 }

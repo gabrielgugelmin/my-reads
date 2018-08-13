@@ -1,0 +1,18 @@
+.search {
+  &__message {
+    font-family: $font-text;
+  }
+
+  &__bar {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    width: 60%;
+
+    input {
+      // width: 200px;
+    }
+  }
+}

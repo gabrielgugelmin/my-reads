@@ -1,7 +1,6 @@
 .book {
-  margin: $grid-gutter;
   padding: (2 * $grid-gutter) 0 0 0;
-  width: 450px;
+  width: calc((100% / 3) - 30px);
 
   &:hover {
     .book__top {
@@ -14,13 +13,14 @@
     box-shadow: 1px 1px 2px 0px rgba($black, .1);
     display: flex;
     flex-direction: row;
-    padding: 0 0 0 (2 * $grid-gutter);
+    padding: 0 0 0 $grid-gutter;
     position: relative;
   }
 
   &__text {
     flex: 1;
-    padding: (2 * $grid-gutter);
+    padding: $grid-gutter;
+    max-width: 60%;
   }
 
   &__image {
@@ -30,24 +30,37 @@
     border-radius: 2px;
     box-shadow: 1px 1px 8px 2px rgba($black, .18);
     flex: 0.4;
-    height: 240px;
+    height: 160px;
     position: relative;
     top: -(2 * $grid-gutter);
-    width: 170px;
+    width: 110px;
+  }
+
+  &__description {
+    font-family: $font-text;
+    line-height: 1.4;
+    color: $gray-darker;
+    font-size: 15px;
   }
 
   &__title {
-    color: $purple;
+    color: $blue;
     font-family: $font-title;
-    font-weight: 600;
     font-size: 16px;
+    font-weight: 600;
     margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
   }
 
   &__authors {
-    color: $purple;
+    color: $gray-dark;
     font-family: $font-text;
     font-size: 14px;
+    height: 42px;
+    margin-bottom: 10px;
 
     &-item {
       margin-bottom: 3px;
@@ -61,7 +74,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    width: 40px;
+    width: 30px;
     z-index: z("absolute");
 
     span {

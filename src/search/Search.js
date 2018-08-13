@@ -32,7 +32,7 @@ class Search extends Component {
 									/>
 								))
 							) : (
-								this.props.searchMessage
+								<p className="search__message">{this.props.searchMessage}</p>
 							)
 						}
 					</ol>
