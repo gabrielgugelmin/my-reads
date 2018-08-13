@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { normalizeText } from '../helpers/normalizeText';
+import { normalizeText, getExcerpt } from '../helpers/Helpers';
 
 class Book extends Component {
 
@@ -10,9 +10,13 @@ class Book extends Component {
 
     return (
       <div className="book">
-        <div className="book__top">
-          <div className="book__image" style={{backgroundImage: `url(${thumbnail})` }}>
+        <div className="book__container">
+          <div className="book__figure">
+            <div className="book__image" style={{backgroundImage: `url(${thumbnail})` }}></div>
+          </div>
+          <div className="book__text">
             <div className="book__shelf-changer">
+              <span></span>
               <select
                 value={this.props.books.filter((book) => book.id === this.props.book.id).reduce((prev, book) => book.shelf, 'none')}
                 onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)} >
@@ -28,19 +32,27 @@ class Book extends Component {
                 }
                 </select>
             </div>
+            <div className="book__title">{this.props.book.title}</div>
+            <div className="book__authors">
+              {
+                this.props.book.authors && (
+                  <div>
+                    De 
+                    {
+                      this.props.book.authors.map((author, index) => (
+                        `${(index > 0) ? ' e ' : '' } ${author}`
+                      )
+                    )}
+                  </div>
+                )
+              }
+            </div>
+            <div className="book__description">
+              {
+               this.props.book.description && (getExcerpt(this.props.book.description, 42))
+              }
+            </div>
           </div>
-        </div>
-        <div className="book__title">{this.props.book.title}</div>
-        <div className="book__authors">
-          {
-            this.props.book.authors &&
-              (this.props.book.authors.map(author => (
-                <div key={author} className="book__authors-item">
-                  {author}
-                </div>
-              ))
-            )
-          }
         </div>
       </div>
     )
