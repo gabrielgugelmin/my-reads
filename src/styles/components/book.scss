@@ -1,0 +1,134 @@
+.book {
+  padding: (2 * $grid-gutter) 0 0 0;
+  width: calc((100% / 3) - 30px);
+
+  &:hover {
+    .book__top {
+      box-shadow: 1px 1px 12px 8px rgba($black, .15);
+    }
+  }
+
+  &__container {
+    background-color: $white;
+    box-shadow: 1px 1px 2px 0px rgba($black, .1);
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 0 $grid-gutter;
+    position: relative;
+  }
+
+  &__text {
+    flex: 1;
+    padding: $grid-gutter;
+    max-width: 60%;
+  }
+
+  &__image {
+    background-color: $gray-dark;
+    background-position: center top;
+    background-size: cover;
+    border-radius: 2px;
+    box-shadow: 1px 1px 8px 2px rgba($black, .18);
+    flex: 0.4;
+    height: 160px;
+    position: relative;
+    top: -(2 * $grid-gutter);
+    width: 110px;
+  }
+
+  &__description {
+    font-family: $font-text;
+    line-height: 1.4;
+    color: $gray-darker;
+    font-size: 15px;
+  }
+
+  &__title {
+    color: $blue;
+    font-family: $font-title;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  &__authors {
+    color: $gray-dark;
+    font-family: $font-text;
+    font-size: 14px;
+    height: 42px;
+    margin-bottom: 10px;
+
+    &-item {
+      margin-bottom: 3px;
+    }
+  }
+
+  &__shelf-changer {
+    align-items: center;
+    cursor: pointer;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    z-index: z("absolute");
+
+    span {
+      background-color: $gray-darker;
+      border-radius: 50%;
+      display: block;
+      height: 3px;
+      margin: 0 auto;
+      position: relative;
+      transition-delay: .06s;
+      transition: background-color .3s;
+      width: 3px;
+      top: 20px;
+
+      &::after,
+      &::before {
+        background-color: $gray-darker;
+        border-radius: 50%;
+        content: "";
+        display: block;
+        height: 3px;
+        position: absolute;
+        transition: background-color .3s;
+        width: 3px;
+      }
+
+      &::after {
+        bottom: -8px;
+        transition-delay: .12s;
+      }
+
+      &::before {
+        top: -8px;
+      }
+    }
+
+    &:hover {
+      span,
+      span::after,
+      span::before {
+        background-color: $salmon;
+      }
+    }
+
+    &:focus {
+      outline-style: dotted;
+      outline-width: 1px;
+    }
+
+    select {
+      cursor: pointer;
+      height: 100%;
+      opacity: 0;
+      width: 100%;
+    }
+  }
+}
