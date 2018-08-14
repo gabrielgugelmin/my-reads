@@ -28,11 +28,12 @@ class SearchResult extends Component {
 }
 
 SearchResult.propTypes = {
-	books: PropTypes.array.isRequired,
-	booksSearch: PropTypes.array.isRequired,
-	searchMessage: PropTypes.string.isRequired,
-	shelfs: PropTypes.array.isRequired,
-	updateShelf: PropTypes.func.isRequired,
+  addNotification: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired,
+  booksSearch: PropTypes.array.isRequired,
+  searchMessage: PropTypes.string.isRequired,
+  shelfs: PropTypes.array.isRequired,
+  updateShelf: PropTypes.func.isRequired,
 }
 
 export default SearchResult

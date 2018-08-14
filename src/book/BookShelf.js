@@ -13,12 +13,13 @@ class BookShelf extends Component {
               // Separo os livros por prateleira
               this.props.books.filter(book => book.shelf === this.props.shelfTitle).map(book => (
                 <Book
+                  addNotification={this.props.addNotification}
                   book={book}
                   books={this.props.books}
                   key={book.id}
                   shelfs={this.props.shelfs}
+                  triggerModal={this.props.triggerModal}
                   updateShelf={this.props.updateShelf}
-                  addNotification={this.props.addNotification}
                 />
               ))
             }
@@ -29,6 +30,7 @@ class BookShelf extends Component {
 }
 
 BookShelf.propTypes = {
+  addNotification: PropTypes.func.isRequired,
   books: PropTypes.array.isRequired,
   shelfTitle: PropTypes.string.isRequired,
   shelfs: PropTypes.array.isRequired,

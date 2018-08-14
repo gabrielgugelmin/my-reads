@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { normalizeText, getExcerpt } from '../helpers/Helpers';
+// https://www.npmjs.com/package/react-star-rating-component
+import StarRatingComponent from 'react-star-rating-component';
 
 class Book extends Component {
   handleChange = (book, shelf) => {
@@ -9,17 +11,22 @@ class Book extends Component {
 
     // Mostra mensagem de feedback
     this.props.addNotification();
- }
+  }
+
+  handleClick = (book) => {
+    this.props.triggerModal(book);
+  }
 
   render () {
     // Resumo do livro
     const description = this.props.book.description && (getExcerpt(this.props.book.description, 340));
-    const descriptionExcerpt = this.props.book.description && (getExcerpt(this.props.book.description, 80));
+    const descriptionExcerpt = this.props.book.description && (getExcerpt(this.props.book.description, 150));
+
     // Verifica se o book possui imagem
     const thumbnail = 'imageLinks' in this.props.book ? this.props.book.imageLinks.thumbnail : false;
 
     return (
-      <div className="book">
+      <div className="book" onClick={() => this.handleClick(this.props.book)}>
         <div className="book__container">
           <div className="book__figure">
             <div className="book__image" title={this.props.book.title} style={{backgroundImage: `url(${thumbnail})` }}></div>
@@ -57,6 +64,20 @@ class Book extends Component {
                 )
               }
             </div>
+            {
+              this.props.book.averageRating ? (
+                <StarRatingComponent
+                  className="book__rating"
+                  name="rating"
+                  editing={false}
+                  starCount={5}
+                  value={this.props.book.averageRating}
+                  emptyStarColor={"#8f8f8f"}
+                />
+              ) : (
+                <div className="book__rating">Nota não disponível</div>
+              )
+            }
             <p className="book__description" title={description}>
               {descriptionExcerpt}
             </p>
@@ -70,7 +91,8 @@ class Book extends Component {
 Book.propTypes = {
   book: PropTypes.object.isRequired,
   books: PropTypes.array.isRequired,
-  updateShelf: PropTypes.func.isRequired
+  updateShelf: PropTypes.func.isRequired,
+  addNotification: PropTypes.func.isRequired,
 }
 
 export default Book;

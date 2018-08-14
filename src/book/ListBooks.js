@@ -15,6 +15,7 @@ class ListBooks extends Component {
               shelfs={this.props.shelfs}
               updateShelf={this.props.updateShelf}
               addNotification={this.props.addNotification}
+              triggerModal={this.props.triggerModal}
             />
           ))
         }
@@ -24,6 +25,7 @@ class ListBooks extends Component {
 }
 
 ListBooks.propTypes = {
+  addNotification: PropTypes.func.isRequired,
   books: PropTypes.array.isRequired,
   shelfs: PropTypes.array.isRequired,
   updateShelf: PropTypes.func.isRequired,

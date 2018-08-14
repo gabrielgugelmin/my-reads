@@ -1,0 +1,32 @@
+.overlay {
+  background-color: rgba($black, .666);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: z("fixed");
+  transition: opacity .3s;
+
+  &--open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: $gray-light;
+  border-radius: 2px;
+  box-shadow: 1px 1px 6px 1px rgba($black, .2);
+  margin: 0 auto;
+  max-width: 90%;
+  padding: 2 * $grid-gutter;
+  position: relative;
+  top: 45px;
+
+  @include media(">=tablet") {
+    max-width: 760px;
+  }
+}

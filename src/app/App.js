@@ -5,11 +5,13 @@ import ListBooks from '../book/ListBooks';
 import Header from '../header/Header';
 import '../styles/styles.scss';
 import SearchResult from '../search/SearchResult';
+import Modal from '../modal/Modal';
 import ReactNotification from "react-notifications-component";
-
 
 class BooksApp extends React.Component {
   state = {
+    // Usado para montar o modal
+    bookModal: {},
     // Armazena os livros do usuário
     books: [],
     // Armazena os livros que são retornados pela busca (fn: searchBooks)
@@ -17,7 +19,9 @@ class BooksApp extends React.Component {
     // Valor do input de busca
     searchQuery: '',
     // Mensagem que será exibida na tela de busca
-    searchMessage: 'Os resultados da pesquisa serão exibidos aqui'
+    searchMessage: 'Os resultados da pesquisa serão exibidos aqui',
+    // Exibe modal
+    showModal: false,
   }
 
   // Muda o livro de prateleira
@@ -52,6 +56,14 @@ class BooksApp extends React.Component {
         searchMessage: 'Nenhum resultado encontrado'
       });
     }
+  }
+
+  // Atualiza o Book do Modal
+  triggerModal = (book) => {
+    this.setState({
+      bookModal: book,
+      showModal: true
+    });
   }
 
   componentDidMount() {
@@ -102,6 +114,7 @@ class BooksApp extends React.Component {
                 shelfs={shelfs}
                 updateShelf={this.updateShelf}
                 addNotification={this.addNotification}
+                triggerModal={this.triggerModal}
               />
             )} />
             <Route path="/search" render={() => (
@@ -119,6 +132,14 @@ class BooksApp extends React.Component {
           </div>
           <ReactNotification ref={input => this.notificationDOMRef = input} />
         </main>
+        {
+          (this.state.showModal) && (
+            <Modal
+              book={this.state.bookModal}
+              show={this.state.showModal}
+            />
+          )
+        }
       </div>
     )
   }

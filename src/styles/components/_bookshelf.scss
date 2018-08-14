@@ -1,5 +1,5 @@
 .bookshelf {
-  margin-bottom: 4 * $grid-gutter;
+  padding-bottom: 4 * $grid-gutter;
 
   &__title {
     border-bottom: 1px solid $gray;
@@ -12,7 +12,7 @@
 
   &__grid {
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
     flex-wrap: wrap;
   }
 
