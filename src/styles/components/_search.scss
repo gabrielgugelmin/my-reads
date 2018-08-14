@@ -1,6 +1,8 @@
 .search {
   &__message {
     font-family: $font-text;
+    text-align: center;
+    width: 100%;
   }
 
   &__bar {

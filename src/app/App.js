@@ -5,6 +5,8 @@ import ListBooks from '../book/ListBooks';
 import Header from '../header/Header';
 import '../styles/styles.scss';
 import SearchResult from '../search/SearchResult';
+import ReactNotification from "react-notifications-component";
+
 
 class BooksApp extends React.Component {
   state = {
@@ -61,6 +63,27 @@ class BooksApp extends React.Component {
     });
   }
 
+  // Notificação para feedback ao usuário
+  addNotification = () => {
+    this.notificationDOMRef.addNotification({
+      title: "",
+      message: "Livro adicionado à prateleira.",
+      type: "default",
+      insert: "bottom",
+      container: "bottom-left",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: { duration: 2250 },
+      dismissable: { click: true },
+      slidingEnter: {
+        duration: 200
+      },
+      slidingExit: {
+        duration: 200
+      }
+    });
+  }
+
   render() {
     // Prateleiras disponíveis
     const shelfs = ['currentlyReading', 'wantToRead', 'read', 'none']
@@ -78,6 +101,7 @@ class BooksApp extends React.Component {
                 books={this.state.books}
                 shelfs={shelfs}
                 updateShelf={this.updateShelf}
+                addNotification={this.addNotification}
               />
             )} />
             <Route path="/search" render={() => (
@@ -88,10 +112,12 @@ class BooksApp extends React.Component {
                   searchMessage={this.state.searchMessage}
                   shelfs={shelfs}
                   updateShelf={this.updateShelf}
+                  addNotification={this.addNotification}
                 />
               </div>
             )}/>
           </div>
+          <ReactNotification ref={input => this.notificationDOMRef = input} />
         </main>
       </div>
     )

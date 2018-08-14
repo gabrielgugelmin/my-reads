@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 import { normalizeText, getExcerpt } from '../helpers/Helpers';
 
 class Book extends Component {
+  handleChange = (book, shelf) => {
+    // Muda o livro de prateleira
+    this.props.updateShelf(book, shelf);
+
+    // Mostra mensagem de feedback
+    this.props.addNotification();
+ }
 
   render () {
     // Resumo do livro
     const description = this.props.book.description && (getExcerpt(this.props.book.description, 340));
-    const excerpt = this.props.book.description && (getExcerpt(this.props.book.description, 60));
+    const descriptionExcerpt = this.props.book.description && (getExcerpt(this.props.book.description, 80));
     // Verifica se o book possui imagem
     const thumbnail = 'imageLinks' in this.props.book ? this.props.book.imageLinks.thumbnail : false;
 
@@ -22,7 +29,7 @@ class Book extends Component {
               <span></span>
               <select
                 value={this.props.books.filter((book) => book.id === this.props.book.id).reduce((prev, book) => book.shelf, 'none')}
-                onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)} >
+                onChange={(e) => this.handleChange(this.props.book, e.target.value) } >
                 <option value="move" disabled>Move to...</option>
                 {
                   this.props.shelfs.map(shelf => (
@@ -51,7 +58,7 @@ class Book extends Component {
               }
             </div>
             <p className="book__description" title={description}>
-              {excerpt}
+              {descriptionExcerpt}
             </p>
           </div>
         </div>

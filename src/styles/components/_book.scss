@@ -1,6 +1,33 @@
 .book {
+  margin: (2 * $grid-gutter) 0;
   padding: (2 * $grid-gutter) 0 0 0;
-  width: calc((100% / 3) - 30px);
+  width: 100%;
+
+  @include media(">=tablet", "<desktop") {
+    margin: (2 * $grid-gutter) $grid-gutter;
+    width: calc((100% / 2) - #{$grid-gutter});
+
+    &:nth-child(2n+1) {
+      margin-left: 0;
+    }
+
+    &:nth-child(2n+2) {
+      margin-right: 0;
+    }
+  }
+
+  @include media(">=desktop") {
+    margin: (2 * $grid-gutter) $grid-gutter;
+    width: calc((100% / 3) - 20px);
+
+    &:nth-child(3n+1) {
+      margin-left: 0;
+    }
+
+    &:nth-child(3n+3) {
+      margin-right: 0;
+    }
+  }
 
   &:hover {
     .book__top {
@@ -19,8 +46,16 @@
 
   &__text {
     flex: 1;
-    padding: $grid-gutter;
+    padding: $grid-gutter 25px $grid-gutter $grid-gutter;
     max-width: 60%;
+
+    @include media(">=phone") {
+      max-width: 70%;
+    }
+
+    @include media(">=tablet") {
+      max-width: 60%;
+    }
   }
 
   &__image {
@@ -30,10 +65,15 @@
     border-radius: 2px;
     box-shadow: 1px 1px 8px 2px rgba($black, .18);
     flex: 0.4;
-    height: 160px;
+    height: 140px;
     position: relative;
     top: -(2 * $grid-gutter);
-    width: 110px;
+    width: 90px;
+
+    @include media(">=tablet") {
+      height: 160px;
+      width: 110px;
+    }
   }
 
   &__description {

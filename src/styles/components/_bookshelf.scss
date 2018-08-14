@@ -16,15 +16,9 @@
     flex-wrap: wrap;
   }
 
-  .book {
-    margin: (2 * $grid-gutter) $grid-gutter;
-
-    &:nth-child(3n+1) {
-      margin-left: 0;
-    }
-
-    &:nth-child(3n+3) {
-      margin-right: 0;
+  &.show {
+    .book {
+      opacity: 1;
     }
   }
 }

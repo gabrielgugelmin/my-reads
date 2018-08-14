@@ -1,6 +1,10 @@
 // Obtém parte do texto
 export function getExcerpt (str, limit){
-  return str.substr(0, str.lastIndexOf(' ', limit)) + '...';
+  if (str.length <= limit) {
+    return str;
+  } else {
+    return str.substr(0, str.lastIndexOf(' ', limit)) + '...';
+  }
 }
 
 

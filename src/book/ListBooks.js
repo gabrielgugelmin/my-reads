@@ -6,21 +6,18 @@ class ListBooks extends Component {
   render() {
     return (
       <div className="list-books">
-        <div className="list-books-content">
-          <div>
-            {
-              this.props.shelfs.map((shelfTitle) => (
-                <BookShelf
-                  books={this.props.books}
-                  key={shelfTitle}
-                  shelfTitle={shelfTitle}
-                  shelfs={this.props.shelfs}
-                  updateShelf={this.props.updateShelf}
-                />
-              ))
-            }
-          </div>
-        </div>
+        {
+          this.props.shelfs.map((shelfTitle) => (
+            <BookShelf
+              books={this.props.books}
+              key={shelfTitle}
+              shelfTitle={shelfTitle}
+              shelfs={this.props.shelfs}
+              updateShelf={this.props.updateShelf}
+              addNotification={this.props.addNotification}
+            />
+          ))
+        }
       </div>
     )
   }

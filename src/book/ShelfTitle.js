@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { normalizeText } from '../helpers/normalizeText';
+import { normalizeText } from '../helpers/Helpers';
 
 class ShelfTitle extends Component {
   render () {
