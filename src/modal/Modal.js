@@ -1,28 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as BooksAPI from '../book/BooksAPI';
 
-function Modal (props) {
-  const CSSClasses = ['overlay'];
-  console.log(props.book)
-  if (props.show) {
-    CSSClasses.push('overlay--open');
+class Modal extends Component {
+  state = {
+    title: ''
+  }
+  componentWillMount () {
+    if (this.props.book) {
+      this.setState(this.props.book);
+    } else {
+      console.log(this.props.bookId);
+
+      if (this.props.bookId) {
+        BooksAPI.get(this.props.bookId).then((book) => {
+
+          this.setState(book);
+        });
+      }
+    }
   }
 
-  return (
-    <div className={[...CSSClasses].join(' ')}>
-      <div className="modal">
-        <div className="modal__container">
-          <header className="modal__header">
-            <h3>{props.book.title}</h3>
-          </header>
-          <section className="modal__body">
-            <p>{props.book.description}</p>
-            <iframe frameborder="0" scrolling="no" src="https://books.google.com.br/books?id=OECC3GyCXe8C&lpg=PP1&dq=artificial%20intelligence&pg=PP1&output=embed" width="500" height="500"></iframe>
-          </section>
+  render () {
+    const CSSClasses = ['overlay'];
+
+    if (this.props.show) {
+      CSSClasses.push('overlay--open');
+    }
+
+    return (
+      <div className={[...CSSClasses].join(' ')}>
+        <div className="modal">
+          <div className="modal__container">
+            <header className="modal__header">
+              <h3>{this.state.title}</h3>
+            </header>
+            <section className="modal__body">
+              <p></p>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 Modal.propTypes = {

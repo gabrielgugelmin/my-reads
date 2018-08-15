@@ -11,7 +11,7 @@ import ReactNotification from "react-notifications-component";
 class BooksApp extends React.Component {
   state = {
     // Usado para montar o modal
-    bookModal: {},
+    bookModal: null,
     // Armazena os livros do usuário
     books: [],
     // Armazena os livros que são retornados pela busca (fn: searchBooks)
@@ -108,7 +108,7 @@ class BooksApp extends React.Component {
         />
         <main className="main">
           <div className="container">
-            <Route exact path="/" render={() => (
+            <Route path="/" render={() => (
               <ListBooks
                 books={this.state.books}
                 shelfs={shelfs}
@@ -132,14 +132,25 @@ class BooksApp extends React.Component {
           </div>
           <ReactNotification ref={input => this.notificationDOMRef = input} />
         </main>
-        {
+        <Route 
+          path="/livro/:id"
+          render={(props) => (
+            <Modal
+              book={this.state.bookModal}
+              // show={this.state.showModal}
+              show="true"
+              bookId={props.match.params.id}
+            />
+          )}
+        />
+        {/* {
           (this.state.showModal) && (
             <Modal
               book={this.state.bookModal}
               show={this.state.showModal}
             />
           )
-        }
+        } */}
       </div>
     )
   }
