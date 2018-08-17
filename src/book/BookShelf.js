@@ -18,7 +18,7 @@ class BookShelf extends Component {
                   books={this.props.books}
                   key={book.id}
                   shelfs={this.props.shelfs}
-                  triggerModal={this.props.triggerModal}
+                  handleToggleModal={this.props.handleToggleModal}
                   updateShelf={this.props.updateShelf}
                 />
               ))

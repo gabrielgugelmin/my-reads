@@ -15,7 +15,7 @@ class ListBooks extends Component {
               shelfs={this.props.shelfs}
               updateShelf={this.props.updateShelf}
               addNotification={this.props.addNotification}
-              triggerModal={this.props.triggerModal}
+              handleToggleModal={this.props.handleToggleModal}
             />
           ))
         }

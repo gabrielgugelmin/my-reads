@@ -57,16 +57,31 @@
   }
 
   &__text {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
     padding-left: (2 * $grid-gutter);
   }
 
   &__title {
-    color: $blue;
+    color: $blue-dark;
     font-family: $font-title;
     font-size: 16px;
     font-weight: 600;
     line-height: 1.3;
     margin-bottom: 3px;
+  }
+
+  &__link {
+    color: $blue;
+    font-size: 14px;
+    font-weight: fw("bold");
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: $grid-gutter;
+    align-self: flex-end;
   }
 
   &__rating {
@@ -132,7 +147,7 @@
       span,
       span::after,
       span::before {
-        background-color: $salmon;
+        background-color: $blue-light;
       }
     }
 
@@ -146,18 +161,6 @@
       height: 100%;
       opacity: 0;
       width: 100%;
-    }
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    .book__container {
-      box-shadow: 1px 1px 10px 2px rgba($black, .12);
-    }
-
-    .book__image {
-      box-shadow: 1px 1px 10px 6px rgba($black, .18);
     }
   }
 }

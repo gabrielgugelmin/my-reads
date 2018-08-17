@@ -3,7 +3,7 @@
 
   &__title {
     border-bottom: 1px solid $gray;
-    color: $blue;
+    color: $blue-dark;
     font-family: $font-title;
     font-size: 20px;
     padding-bottom: 5px;
@@ -14,11 +14,5 @@
     display: flex;
     // flex-direction: row;
     flex-wrap: wrap;
-  }
-
-  &.show {
-    .book {
-      opacity: 1;
-    }
   }
 }

@@ -5,10 +5,10 @@
   opacity: 0;
   position: fixed;
   top: 0;
+  transition: opacity .3s;
   visibility: hidden;
   width: 100%;
   z-index: z("fixed");
-  transition: opacity .3s;
 
   &--open {
     visibility: visible;
@@ -17,16 +17,183 @@
 }
 
 .modal {
-  background: $gray-light;
+  background: $white;
   border-radius: 2px;
   box-shadow: 1px 1px 6px 1px rgba($black, .2);
   margin: 0 auto;
   max-width: 90%;
-  padding: 2 * $grid-gutter;
+  padding: (2 * $grid-gutter);
   position: relative;
   top: 45px;
 
   @include media(">=tablet") {
     max-width: 760px;
+  }
+
+  &__bg {
+    background-image: linear-gradient(#6ab9ea, #4782CD);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 100%,
+      0 calc(100% - 5vw)
+    );
+    box-shadow: 1px 1px 8px 3px rgba($black, .25);
+    height: 250px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &__body {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__buttons {
+    align-items: center;
+    display: flex;
+    padding: (2 * $grid-gutter) 0 $grid-gutter;
+  }
+
+  &__button {
+    display: inline-block;
+    background-color: $yellow;
+    border-radius: 25px;
+    box-shadow: 0 3px 8px 3px rgba($black, .25);
+    color: $blue-dark;
+    font-size: 12px;
+    font-weight: fw("bold");
+    letter-spacing: 1px;
+    padding: $grid-gutter (2 * $grid-gutter);
+    text-transform: uppercase;
+    transition: all .3s;
+
+    &:hover {
+      box-shadow: 0 5px 9px 4px rgba($black, .3);
+      background-color: darken($yellow, 3%);
+    }
+  }
+
+  &__button-icon {
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid $gray-light;
+    display: inline-flex;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+    margin-left: $grid-gutter;
+
+    svg {
+      fill: $gray-light;
+    }
+  }
+
+  &__info {
+    align-items: center;
+    border-bottom: 1px solid lighten($blue-light, 10%);
+    border-top: 1px solid lighten($blue-light, 10%);
+    color: $white;
+    display: flex;
+    font-size: 11px;
+    justify-content: space-between;
+    letter-spacing: 1px;
+    padding: 10px 0;
+
+    li {
+      padding: 0 $grid-gutter;
+
+      &::before {
+        content: "•";
+        position: relative;
+        left: -5px;
+      }
+
+      &:first-child {
+        padding: 0 $grid-gutter 0 0;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    .book__rating {
+      color: $white;
+      margin-bottom: 0;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-right: 8px;
+      font-weight: fw("semibold");
+      font-size: 13px;
+    }
+  }
+
+  &__img {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: 1px 1px 8px 3px rgba($black, .25);
+    height: 260px;
+    max-width: 180px;
+  }
+
+  &__title {
+    color: $white;
+    font: {
+      family: $font-title;
+      size: 22px;
+    }
+    line-height: 1.3;
+    margin-bottom: $grid-gutter;
+  }
+
+  &__header {
+    // padding: 0 (2 * $grid-gutter);
+    position: relative;
+  }
+
+  &__close {
+    display: inline-block;
+    height: 30px;
+    overflow: hidden;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 30px;
+
+    &:hover {
+      &::before, &::after {
+        background: $white;
+      }
+    }
+
+    &::before, &::after {
+      background: $gray-light;
+      content: '';
+      height: 3px;
+      left: 0;
+      margin-top: -2px;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
   }
 }

@@ -8,6 +8,10 @@ body, .app {
   background-color: $gray-light;
 }
 
+.app {
+  font-family: $font-text;
+}
+
 .main {
   padding-top: 102px;
 }
