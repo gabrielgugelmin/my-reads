@@ -5,12 +5,10 @@ import ListBooks from '../book/ListBooks';
 import Header from '../header/Header';
 import SearchResult from '../search/SearchResult';
 import ReactNotification from "react-notifications-component";
-import Modal from '../modal/Modal'
 import '../styles/styles.scss';
 
 class BooksApp extends React.Component {
   state = {
-    bookModal: null,
     // Armazena os livros do usuário
     books: [],
     // Armazena os livros que são retornados pela busca (fn: searchBooks)
@@ -19,7 +17,6 @@ class BooksApp extends React.Component {
     searchQuery: '',
     // Mensagem que será exibida na tela de busca
     searchMessage: 'Os resultados da pesquisa serão exibidos aqui',
-    showModal: false,
   }
 
   // Muda o livro de prateleira
@@ -86,14 +83,6 @@ class BooksApp extends React.Component {
     });
   }
 
-  handleToggleModal = (book) => {
-    console.log(book)
-    if (book) {
-      this.setState({ bookModal: book });
-    }
-    this.setState((prevState) => ({ showModal: !prevState.showModal }));
-  }
-
   render() {
     // Prateleiras disponíveis
     const shelfs = ['currentlyReading', 'wantToRead', 'read', 'none']
@@ -108,58 +97,27 @@ class BooksApp extends React.Component {
           <div className="container">
             <Route exact path="/" render={() => (
               <ListBooks
+                addNotification={this.addNotification}
                 books={this.state.books}
                 shelfs={shelfs}
                 updateShelf={this.updateShelf}
-                addNotification={this.addNotification}
-                handleToggleModal={this.handleToggleModal}
               />
             )} />
             <Route path="/search" render={() => (
               <div className="search-books">
                 <SearchResult
+                  addNotification={this.addNotification}
                   books={this.state.books}
                   booksSearch={this.state.booksSearch}
                   searchMessage={this.state.searchMessage}
                   shelfs={shelfs}
                   updateShelf={this.updateShelf}
-                  addNotification={this.addNotification}
-                  handleToggleModal={this.handleToggleModal}
                 />
               </div>
             )}/>
           </div>
           <ReactNotification ref={input => this.notificationDOMRef = input} />
         </main>
-        {/* { <Route
-          path="/livro/:id"
-          render={
-            this.teste
-            // <Modal
-            //   book={this.state.bookModal}
-            //   bookId={props.match.params.id}
-            // />
-          }
-        />} */}
-        {
-          <Route
-            path="/livro/:id"
-            render={(props) =>
-              <Modal
-                handleToggleModal={this.handleToggleModal}
-                book={this.state.bookModal}
-                bookId={props.match.params.id}
-                // props.match.params.id
-              />
-            }
-          />
-        }
-        {/* {this.state.showModal &&
-          <Modal
-            onCloseRequest={() => this.handleToggleModal()}
-            book={this.props.book}
-          />
-        } */}
       </div>
     )
   }

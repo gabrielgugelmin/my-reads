@@ -21,7 +21,9 @@
   border-radius: 2px;
   box-shadow: 1px 1px 6px 1px rgba($black, .2);
   margin: 0 auto;
+  max-height: 85%;
   max-width: 90%;
+  overflow: auto;
   padding: (2 * $grid-gutter);
   position: relative;
   top: 45px;
@@ -47,6 +49,7 @@
   }
 
   &__body {
+    padding: $grid-gutter;
     position: relative;
     z-index: 1;
   }
@@ -79,15 +82,23 @@
   &__button-icon {
     align-items: center;
     border-radius: 50%;
-    border: 2px solid $gray-light;
+    border: 2px solid $gray-darker;
     display: inline-flex;
     height: 44px;
     justify-content: center;
-    width: 44px;
     margin-left: $grid-gutter;
+    width: 44px;
+
+    @include media(">=tablet") {
+      border: 2px solid $gray-light;
+    }
 
     svg {
-      fill: $gray-light;
+      fill: $gray-darker;
+
+      @include media(">=tablet") {
+        fill: $gray-light;
+      }
     }
   }
 
@@ -95,12 +106,16 @@
     align-items: center;
     border-bottom: 1px solid lighten($blue-light, 10%);
     border-top: 1px solid lighten($blue-light, 10%);
-    color: $white;
+    color: $gray-darker;
     display: flex;
     font-size: 11px;
     justify-content: space-between;
     letter-spacing: 1px;
     padding: 10px 0;
+
+    @include media(">=tablet") {
+      color: $white;
+    }
 
     li {
       padding: 0 $grid-gutter;
@@ -145,16 +160,25 @@
     box-shadow: 1px 1px 8px 3px rgba($black, .25);
     height: 260px;
     max-width: 180px;
+    margin-bottom: 2 * $grid-gutter;
+
+    @include media(">=tablet") {
+      margin-bottom: 0;
+    }
   }
 
   &__title {
-    color: $white;
+    color: $gray-darker;
     font: {
       family: $font-title;
       size: 22px;
     }
     line-height: 1.3;
     margin-bottom: $grid-gutter;
+
+    @include media(">=tablet") {
+      color: $white;
+    }
   }
 
   &__header {

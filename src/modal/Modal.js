@@ -1,48 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link }from 'react-router-dom';
 import StarRatingComponent from 'react-star-rating-component';
-import * as BooksAPI from '../book/BooksAPI';
 
 class Modal extends Component {
-  state = {
-    book: {}
-  }
-
   componentWillMount () {
     if (this.props.book) {
-      console.log('1: ', this.props.book);
       this.setState({
         book: this.props.book
       });
-
-      // BooksAPI.get(this.props.book).then((book) => {
-      //   console.log('1: ', book);
-      //   this.setState({
-      //     book: book
-      //   });
-      // });
-    } else {
-      console.log('2: ', this.props.book);
-      console.log('2: ', this.props.bookId);
-
-      if (this.props.bookId) {
-        BooksAPI.get(this.props.bookId).then((book) => {
-          console.log('2: ', book);
-          this.setState({
-            book: book
-          });
-        });
-      }
     }
   }
 
-  // handleToggleModal = () => {
-  //   this.setState((prevState) => ({ showModal: !prevState.showModal }));
-  // }
-
   render () {
-    const { book } = this.state;
+    const { book } = this.props;
 
     // Verifica se o livro tem imagem e troca o zoom da URL para pegar uma imagem de resolução maior
     // para não ficar pixelada ^_^
@@ -56,10 +26,10 @@ class Modal extends Component {
             <header className="modal__header">
               <div className="container">
                 <div className="row">
-                  <div className="col-md-4">
+                  <div className="col-xs-12 col-sm-4 col-md-4">
                     <div className="modal__img" style={{backgroundImage: `url('${img}')` }}></div>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-xs-12 col-md-8">
                     <h3 className="modal__title">{book.title}</h3>
 
                     <div className="modal__info">
@@ -97,12 +67,12 @@ class Modal extends Component {
                   </div>
                 </div>
               </div>
-              <Link to="/"
+              <button
                 type="button"
-                onClick={this.props.handleToggleModal}
+                onClick={this.props.closeModal}
                 className="modal__close"
                 title="Fechar"
-              />
+              ></button>
             </header>
             <section className="modal__body">
               <p>
@@ -117,7 +87,8 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  // book: PropTypes.object,
+  book: PropTypes.object,
+  closeModal: PropTypes.func
 }
 
 export default Modal
