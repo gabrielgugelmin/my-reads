@@ -1,0 +1,18 @@
+.bookshelf {
+  padding-bottom: 4 * $grid-gutter;
+
+  &__title {
+    border-bottom: 1px solid $gray;
+    color: $blue-dark;
+    font-family: $font-title;
+    font-size: 20px;
+    padding-bottom: 5px;
+    margin-bottom: $grid-gutter;
+  }
+
+  &__grid {
+    display: flex;
+    // flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

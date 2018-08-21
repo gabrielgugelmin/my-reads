@@ -1,0 +1,31 @@
+.search {
+  &__message {
+    font-family: $font-text;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__bar {
+    transition: all .3s ease;
+    opacity: 1;
+    margin-left: auto;
+    width: 40%;
+
+    input {
+      font-family: $font-text;
+      width: 100%;
+      // width: 200px;
+    }
+  }
+
+  &__input {
+    align-items: center;
+    border-bottom: 1px solid $blue-dark;
+    display: flex;
+    flex-direction: row;
+
+    input {
+      padding: 5px $grid-gutter;
+    }
+  }
+}
