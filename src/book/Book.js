@@ -10,10 +10,7 @@ class Book extends Component {
     showModal: false
   }
 
-  handleChange = (event, book, shelf) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.nativeEvent.stopImmediatePropagation();
+  handleChange = (book, shelf) => {
     // Muda o livro de prateleira
     this.props.updateShelf(book, shelf);
 
@@ -56,7 +53,7 @@ class Book extends Component {
               <span></span>
               <select
                 value={this.props.books.filter((book) => book.id === this.props.book.id).reduce((prev, book) => book.shelf, 'none')}
-                onChange={(event) => this.handleChange(event, book, event.target.value)}
+                onChange={(event) => this.handleChange(book, event.target.value)}
                 onClick={(event) => this.handleClickSelect(event)} >
                 <option value="move" disabled>Move to...</option>
                 {
@@ -124,10 +121,11 @@ class Book extends Component {
 }
 
 Book.propTypes = {
+  addNotification: PropTypes.func.isRequired,
   book: PropTypes.object.isRequired,
   books: PropTypes.array.isRequired,
+  shelfs: PropTypes.array.isRequired,
   updateShelf: PropTypes.func.isRequired,
-  addNotification: PropTypes.func.isRequired,
 }
 
 export default Book;

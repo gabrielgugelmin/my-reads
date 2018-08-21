@@ -87,8 +87,8 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  book: PropTypes.object,
-  closeModal: PropTypes.func
+  book: PropTypes.object.isRequired,
+  closeModal: PropTypes.func.isRequired,
 }
 
 export default Modal

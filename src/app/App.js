@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import * as BooksAPI from '../book/BooksAPI';
+
 import ListBooks from '../book/ListBooks';
 import Header from '../header/Header';
 import SearchResult from '../search/SearchResult';
 import ReactNotification from "react-notifications-component";
+
 import '../styles/styles.scss';
 
 class BooksApp extends React.Component {
@@ -35,7 +37,7 @@ class BooksApp extends React.Component {
     this.setState({ searchQuery: event.target.value });
 
     // Só consulta a API caso o input não esteja vazio
-    if (event.target.value.length > 0) {
+    if (event.target.value) {
       BooksAPI.search(event.target.value).then((booksSearch) => {
         let result = booksSearch.length > 0 ? booksSearch : [];
 

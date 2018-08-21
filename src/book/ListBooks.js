@@ -9,13 +9,12 @@ class ListBooks extends Component {
         {
           this.props.shelfs.map((shelfTitle) => (
             <BookShelf
+              addNotification={this.props.addNotification}
               books={this.props.books}
               key={shelfTitle}
               shelfTitle={shelfTitle}
               shelfs={this.props.shelfs}
               updateShelf={this.props.updateShelf}
-              addNotification={this.props.addNotification}
-              handleToggleModal={this.props.handleToggleModal}
             />
           ))
         }
