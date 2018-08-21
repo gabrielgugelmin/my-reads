@@ -136,8 +136,12 @@
     }
 
     .book__rating {
-      color: $white;
+      color: $gray-darker;
       margin-bottom: 0;
+
+      @include media(">=tablet") {
+        color: $white;
+      }
     }
   }
 
@@ -160,10 +164,10 @@
     box-shadow: 1px 1px 8px 3px rgba($black, .25);
     height: 260px;
     max-width: 180px;
-    margin-bottom: 2 * $grid-gutter;
+    margin: 0 auto (2 * $grid-gutter);
 
     @include media(">=tablet") {
-      margin-bottom: 0;
+      margin: 0;
     }
   }
 

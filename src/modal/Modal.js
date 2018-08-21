@@ -26,10 +26,10 @@ class Modal extends Component {
             <header className="modal__header">
               <div className="container">
                 <div className="row">
-                  <div className="col-xs-12 col-sm-4 col-md-4">
+                  <div className="col-xs-12 col-sm-4">
                     <div className="modal__img" style={{backgroundImage: `url('${img}')` }}></div>
                   </div>
-                  <div className="col-xs-12 col-md-8">
+                  <div className="col-xs-12 col-sm-8">
                     <h3 className="modal__title">{book.title}</h3>
 
                     <div className="modal__info">
