@@ -10,6 +10,14 @@ class SearchBar extends Component {
     return (
       <div className="search__bar">
         <div className="search__input">
+          {/* <Debounce time="400" handler={this.props.searchBooks}>
+            <input
+              placeholder="Procurar por título ou autor"
+              ref={(input) => { this.nameInput = input; }}
+              type="text"
+              value={this.props.searchQuery}
+            />
+          </Debounce> */}
           <input
             onChange={this.props.searchBooks}
             placeholder="Procurar por título ou autor"

@@ -55,13 +55,10 @@ class BooksApp extends React.Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // Busca todos os livros do usuário
-    BooksAPI.getAll().then((books) => {
-      this.setState({
-        books
-      });
-    });
+    const books = await BooksAPI.getAll();
+    this.setState({ books });
   }
 
   // Notificação para feedback ao usuário
