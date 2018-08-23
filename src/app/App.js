@@ -84,7 +84,7 @@ class BooksApp extends React.Component {
 
   render() {
     // Prateleiras disponíveis
-    const shelfs = ['currentlyReading', 'wantToRead', 'read', 'none']
+    const shelfs = ['currentlyReading', 'wantToRead', 'read']
 
     return (
       <div className="app">
