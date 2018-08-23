@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { normalizeText, getExcerpt } from '../helpers/helpers';
+import { normalizeText, getExcerpt } from '../helpers/Helpers';
 // https://www.npmjs.com/package/react-star-rating-component
 import StarRatingComponent from 'react-star-rating-component';
 import Modal from '../modal/Modal'
